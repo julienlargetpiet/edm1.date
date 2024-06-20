@@ -1,0 +1,15 @@
+Package: edm1
+Title: Set of functions to work with dates
+Version: 2.0.0.0
+Authors@R: 
+    person("Julien", "Larget-Piet", , "julien.larget-piet@dreamRs.fr", role = c("aut", "cre"))
+Description: Provides functio to convert any date to a time unit, to add or substract dates, change the dates formats and sort the dates.
+License: GPL (==3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Imports:
+    stringr,
+    stringi,
+    dplyr,
+    openxlsx

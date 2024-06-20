@@ -1,0 +1,568 @@
+
+<!DOCTYPE html><html><head><title>R: converter_date</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>converter_date</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>converter_date</h2>
+
+<h3>Description</h3>
+
+<p>Allow to convert any date like second/minute/hour/day/month/year to either second, minute...year. The input date should not necessarily have all its time units (second, minute...) but all the time units according to a format. Example: &quot;snhdmy&quot; is for second, hour, minute, day, month, year. And &quot;mdy&quot; is for month, day, year.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>converter_date(inpt_date, convert_to, frmt = "snhdmy", sep_ = "-")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="inpt_date">inpt_date</code></td>
+<td>
+<p>is the input date</p>
+</td></tr>
+<tr><td><code id="convert_to">convert_to</code></td>
+<td>
+<p>is the time unit the input date will be converted (&quot;s&quot;, &quot;n&quot;, &quot;h&quot;, &quot;d&quot;, &quot;m&quot;, &quot;y&quot;)</p>
+</td></tr>
+<tr><td><code id="frmt">frmt</code></td>
+<td>
+<p>is the format of the input date</p>
+</td></tr>
+<tr><td><code id="sep_">sep_</code></td>
+<td>
+<p>is the separator of the input date. For example this input date &quot;12-07-2012&quot; has &quot;-&quot; as a separator</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+print(converter_date(inpt_date="14-04-11-2024", sep_="-", frmt="hdmy", convert_to="m"))
+
+#[1] 24299.15
+
+print(converter_date(inpt_date="14-04-11-2024", sep_="-", frmt="hdmy", convert_to="y"))
+
+#[1] 2024.929
+
+print(converter_date(inpt_date="14-04-11-2024", sep_="-", frmt="hdmy", convert_to="s"))
+
+#[1] 63900626400
+
+print(converter_date(inpt_date="63900626400", sep_="-", frmt="s", convert_to="y"))
+
+#[1] 2024.929
+
+print(converter_date(inpt_date="2024", sep_="-", frmt="y", convert_to="s"))
+
+#[1] 63873964800
+
+</code></pre>
+
+</main>
+
+</div>
+</body></html>
+<!DOCTYPE html><html><head><title>R: converter_format</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>converter_format</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>converter_format</h2>
+
+<h3>Description</h3>
+
+<p>Allow to convert a format to another
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>converter_format(inpt_val, sep_ = "-", inpt_frmt, frmt, default_val = "00")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="inpt_val">inpt_val</code></td>
+<td>
+<p>is the input value that is linked to the format</p>
+</td></tr>
+<tr><td><code id="sep_">sep_</code></td>
+<td>
+<p>is the separator of the value in inpt_val</p>
+</td></tr>
+<tr><td><code id="inpt_frmt">inpt_frmt</code></td>
+<td>
+<p>is the format of the input value</p>
+</td></tr>
+<tr><td><code id="frmt">frmt</code></td>
+<td>
+<p>is the format you want to convert to</p>
+</td></tr>
+<tr><td><code id="default_val">default_val</code></td>
+<td>
+<p>is the default value given to the units that are not present in the input format</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+print(converter_format(inpt_val="23-12-05-1567", sep_="-", 
+                       inpt_frmt="shmy", frmt="snhdmy", default_val="00"))
+
+#[1] "23-00-12-00-05-1567"
+
+print(converter_format(inpt_val="23-12-05-1567", sep_="-", 
+                       inpt_frmt="shmy", frmt="Pnhdmy", default_val="00"))
+
+#[1] "00-00-12-00-05-1567"
+
+</code></pre>
+
+</main>
+
+</div>
+</body></html>
+<!DOCTYPE html><html><head><title>R: date_addr</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>date_addr</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>date_addr</h2>
+
+<h3>Description</h3>
+
+<p>Allow to add or substract two dates that have the same time unit or not
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>date_addr(
+  date1,
+  date2,
+  add = FALSE,
+  frmt1,
+  frmt2 = frmt1,
+  sep_ = "-",
+  convert_to = "dmy"
+)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="date1">date1</code></td>
+<td>
+<p>is the date from which the second date will be added or substracted</p>
+</td></tr>
+<tr><td><code id="date2">date2</code></td>
+<td>
+<p>is the date that will be added or will substract date1</p>
+</td></tr>
+<tr><td><code id="add">add</code></td>
+<td>
+<p>equals to FALSE if you want date1 - date2 and TRUE if you want date1 + date2</p>
+</td></tr>
+<tr><td><code id="frmt1">frmt1</code></td>
+<td>
+<p>is the format of date1 (snhdmy) (second, minute, hour, day, monthn year)</p>
+</td></tr>
+<tr><td><code id="frmt2">frmt2</code></td>
+<td>
+<p>is the format of date2 (snhdmy)</p>
+</td></tr>
+<tr><td><code id="sep_">sep_</code></td>
+<td>
+<p>is the separator of date1 and date2</p>
+</td></tr>
+<tr><td><code id="convert_to">convert_to</code></td>
+<td>
+<p>is the format of the outputed date</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+print(date_addr(date1="25-02", date2="58-12-08", frmt1="dm", frmt2="shd", sep_="-", 
+                convert_to="dmy"))
+
+#[1] "18-2-0"
+
+print(date_addr(date1="25-02", date2="58-12-08", frmt1="dm", frmt2="shd", sep_="-", 
+                convert_to="dmy", add=TRUE))
+
+#[1] "3-3-0"
+
+print(date_addr(date1="25-02-2024", date2="1-01", frmt1="dmy", frmt2="dm", sep_="-", 
+                convert_to="dmy", add=TRUE))
+
+#[1] "27-3-2024"
+
+print(date_addr(date1="25-02-2024", date2="1-01", frmt1="dmy", frmt2="dm", sep_="-", 
+                convert_to="dmy", add=FALSE))
+
+#[1] "23-1-2024" 
+
+print(date_addr(date1="25-02-2024", date2="1-01", frmt1="dmy", frmt2="dm", sep_="-", 
+                 convert_to="n", add=FALSE))
+
+#[1] "1064596320"
+
+print(date_addr(date1="25-02-2024", date2="1-01", frmt1="dmy", frmt2="dm", sep_="-", 
+                 convert_to="s", add=FALSE))
+
+#[1] "63875779200"
+
+</code></pre>
+
+</main>
+
+</div>
+</body></html>
+<!DOCTYPE html><html><head><title>R: date_converter_reverse</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>date_converter_reverse</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>date_converter_reverse</h2>
+
+<h3>Description</h3>
+
+<p>Allow to convert single date value like 2025.36 year to a date like second/minutehour/day/month/year (snhdmy)
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>date_converter_reverse(inpt_date, convert_to = "dmy", frmt = "y", sep_ = "-")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="inpt_date">inpt_date</code></td>
+<td>
+<p>is the input date</p>
+</td></tr>
+<tr><td><code id="convert_to">convert_to</code></td>
+<td>
+<p>is the date format the input date will be converted</p>
+</td></tr>
+<tr><td><code id="frmt">frmt</code></td>
+<td>
+<p>is the time unit of the input date</p>
+</td></tr>
+<tr><td><code id="sep_">sep_</code></td>
+<td>
+<p>is the separator of the outputed date</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+print(date_converter_reverse(inpt_date="2024.929", convert_to="hmy", frmt="y", sep_="-"))
+
+#[1] "110-11-2024"
+
+print(date_converter_reverse(inpt_date="2024.929", convert_to="dmy", frmt="y", sep_="-"))
+
+#[1] "4-11-2024"
+
+print(date_converter_reverse(inpt_date="2024.929", convert_to="hdmy", frmt="y", sep_="-"))
+
+#[1] "14-4-11-2024"
+
+print(date_converter_reverse(inpt_date="2024.929", convert_to="dhym", frmt="y", sep_="-"))
+
+#[1] "4-14-2024-11"
+
+</code></pre>
+
+</main>
+
+</div>
+</body></html>
+<!DOCTYPE html><html><head><title>R: format_date</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>format_date</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>format_date</h2>
+
+<h3>Description</h3>
+
+<p>Allow to convert xx-month-xxxx date type to xx-xx-xxxx
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>format_date(f_dialect, sentc, sep_in = "-", sep_out = "-")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="f_dialect">f_dialect</code></td>
+<td>
+<p>are the months from the language of which the month come</p>
+</td></tr>
+<tr><td><code id="sentc">sentc</code></td>
+<td>
+<p>is the date to convert</p>
+</td></tr>
+<tr><td><code id="sep_in">sep_in</code></td>
+<td>
+<p>is the separator of the dat input (default is &quot;-&quot;)</p>
+</td></tr>
+<tr><td><code id="sep_out">sep_out</code></td>
+<td>
+<p>is the separator of the converted date (default is &quot;-&quot;)</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+print(format_date(f_dialect=c("janvier", "février", "mars", "avril", "mai", "juin",
+"juillet", "aout", "septembre", "octobre", "novembre", "décembre"), sentc="11-septembre-2023"))
+
+#[1] "11-09-2023"
+
+</code></pre>
+
+</main>
+
+</div>
+</body></html>
+<!DOCTYPE html><html><head><title>R: bsx_year</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>leap_yr</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>bsx_year</h2>
+
+<h3>Description</h3>
+
+<p>Get if the year is leap
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>leap_yr(year)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="year">year</code></td>
+<td>
+<p>is the input year</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+print(leap_yr(year=2024))
+
+#[1] TRUE
+
+</code></pre>
+
+</main>
+
+</div>
+</body></html>
+<!DOCTYPE html><html><head><title>R: sort_date</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script type="text/javascript">
+const macros = { "\\R": "\\textsf{R}", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>sort_date</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>sort_date</h2>
+
+<h3>Description</h3>
+
+<p>Allow to sort any vector containing a date, from any kind of format (my, hdmy, ymd ...), see examples.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class='language-R'>sort_date(inpt_v, frmt, sep_ = "-", ascending = FALSE, give = "value")
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table>
+<tr><td><code id="inpt_v">inpt_v</code></td>
+<td>
+<p>is the input vector containing all the dates</p>
+</td></tr>
+<tr><td><code id="frmt">frmt</code></td>
+<td>
+<p>is the format  of the dates, (any combinaison of letters &quot;s&quot; for second, &quot;n&quot;, for minute, &quot;h&quot; for hour, &quot;d&quot; for day, &quot;m&quot; for month and &quot;y&quot; for year)</p>
+</td></tr>
+<tr><td><code id="sep_">sep_</code></td>
+<td>
+<p>is the separator used for the dates</p>
+</td></tr>
+<tr><td><code id="ascending">ascending</code></td>
+<td>
+<p>is the used to sort the dates</p>
+</td></tr>
+<tr><td><code id="give">give</code></td>
+<td>
+<p>takes only two values &quot;index&quot; or &quot;value&quot;, if give == &quot;index&quot;, the function will output the index of sorted dates from inpt_v, if give == &quot;value&quot;, the function will output the value, it means directly the sorted dates in inpt_v, see examples</p>
+</td></tr>
+</table>
+
+
+<h3>Examples</h3>
+
+<pre><code class='language-R'>
+print(sort_date(inpt_v = c("01-11-2025", "08-08-1922", "12-04-1966")
+                , frmt = "dmy", sep_ = "-", ascending = TRUE, give = "value"))
+
+[1] "08-08-1922" "12-04-1966" "01-11-2025"
+
+print(sort_date(inpt_v = c("01-11-2025", "08-08-1922", "12-04-1966")
+                , frmt = "dmy", sep_ = "-", ascending = FALSE, give = "value"))
+
+[1] "01-11-2025" "12-04-1966" "08-08-1922"
+
+print(sort_date(inpt_v = c("01-11-2025", "08-08-1922", "12-04-1966")
+                , frmt = "dmy", sep_ = "-", ascending = TRUE, give = "index"))
+
+[1] 2 3 1
+
+print(sort_date(inpt_v = c("22-01-11-2025", "11-12-04-1966", "12-12-04-1966")
+                , frmt = "hdmy", sep_ = "-", ascending = FALSE, give = "value"))
+
+[1] "22-01-11-2025" "12-12-04-1966" "11-12-04-1966"
+
+print(sort_date(inpt_v = c("03-22-01-11-2025", "56-11-12-04-1966", "23-12-12-04-1966")
+                , frmt = "nhdmy", sep_ = "-", ascending = FALSE, give = "value"))
+
+[1] "03-22-01-11-2025" "23-12-12-04-1966" "56-11-12-04-1966"
+
+</code></pre>
+
+</main>
+
+</div>
+</body></html>
