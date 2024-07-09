@@ -4,7 +4,7 @@
 
 -> git clone https://github.com/julienlargetpiet/edm1.date
 
--> cd edm1
+-> cd edm1.date
 
 edm1 > R
 
@@ -269,7 +269,7 @@ print(format_date(f_dialect=c("janvier", "février", "mars", "avril", "mai", "ju
 
 # `leap_yr`
 
-bsx_year
+leap_year
 
 
 ## Description

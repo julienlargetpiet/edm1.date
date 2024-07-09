@@ -36,7 +36,7 @@ format_date <- function(f_dialect, sentc, sep_in="-", sep_out="-"){
   
 }
 
-#' bsx_year 
+#' leap_year 
 #'
 #' Get if the year is leap
 #'
